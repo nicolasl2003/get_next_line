@@ -6,7 +6,7 @@
 /*   By: nilinott <nilinott@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 14:30:35 by nilinott          #+#    #+#             */
-/*   Updated: 2025/12/03 17:06:01 by nilinott         ###   ########lyon.fr   */
+/*   Updated: 2025/12/03 18:22:35 by nilinott         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,28 @@
 
 char	*get_next_line(int fd)
 {
+	int	nbread;
+	static char buf[BUFFER_SIZE + 1];
+
+	nbread = -1;
+	fd = open("dict.txt", O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	while (nbread != 0 ||)
+	{
+		nbread = read(fd, buf, BUFFER_SIZE);
+		buf[nbread] = '\0';
+
+		printf("%s", buf);
 	
+		if (nbread == -1)
+			return (NULL);
+	}
+	close(fd);
+}
+
+#include <stdio.h>
+int	main(void)
+{
+	printf("%s", get_next_line(1));
 }
